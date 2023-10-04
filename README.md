@@ -33,9 +33,8 @@ The NRC Reactors Data API is a Python-based API that provides access to informat
 
 1. Clone the repository to your local machine:
 
-   ```bash
+   
    git clone https://github.com/vamseenaramsetty/nrc_reactors_api.git
-   ```
 
 2. Change to the project directory:
 
