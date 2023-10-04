@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=E:\Prep\Sesco Enterprises\Python Assessment\output\venv
+set VIRTUAL_ENV=C:\Users\vamsi\OneDrive\Desktop\nrc_reactors_api\venv
 
 if not defined PROMPT set PROMPT=$P$G
 

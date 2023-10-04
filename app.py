@@ -363,13 +363,36 @@
 #     scrape_and_load()
 #     get_reactor_status_data()
 #     app.run(debug=True)
+
+
+
+
+
 import sqlite3
 from flask import Flask, jsonify, request
 from bs4 import BeautifulSoup
 import requests
 from datetime import datetime
-
+from flask_swagger_ui import get_swaggerui_blueprint
+import json
 app = Flask(__name__)
+
+SWAGGER_URL='/swagger'
+API_URL='http://127.0.0.1:5000/swagger.json'
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': ' NRC REACTOR DATA '
+    }
+)
+
+app.register_blueprint(swaggerui_blueprint,url_prefix=SWAGGER_URL)
+
+@app.route('/swagger.json')
+def swagger():
+    with open('swagger.json','r') as f:
+        return jsonify(json.load(f))
 
 def create_table():
     try:
@@ -503,6 +526,36 @@ def scrape_and_load():
 def convert_to_iso8601(date_str):
     return datetime.strptime(date_str, '%m-%d-%Y').strftime('%Y-%m-%d')
 
+@app.route('/', methods=['GET'])
+def home():
+    # Define the data structure for API endpoint details
+    api_endpoints = {
+        "endpoints": [
+            {
+                "url": "/reactors/",
+                "description": "Retrieve all reactors with an optional filter by state."
+            },
+            {
+                "url": "/reactors?state=<state>",
+                "description": "Retrieve reactor details by plant name."
+            },
+            {
+                "url": "/reactors/on-outage/<start_date_end_date>",
+                "description": "List all reactors that are on outage for a given date range."
+            },
+            {
+                "url": "/reactors/last-outage-date/<unit>",
+                "description": "Get the last known outage date of a specific reactor by its unit."
+            },
+            {
+                "url": "/reactors/plant_name/<plant_name>",
+                "description": "Retrieve details about a specific reactor by plant name."
+            }
+        ]
+    }
+
+    return jsonify(api_endpoints)
+
 # API endpoint to list all reactors that are on outage for a given date range
 @app.route('/reactors/on-outage/<string:date_range>', methods=['GET'])
 def list_reactors_on_outage(date_range):
@@ -573,9 +626,12 @@ def get_last_outage_date(unit):
         return jsonify({'error': str(e)}), 500
 
 # API endpoint to Retrieve all reactors with an optional filter by state.
-@app.route('/reactors/<string:state>', methods=['GET'])
+# @app.route('/reactors/<string:state>', methods=['GET'])
 @app.route('/reactors/', methods=['GET'])
-def get_reactors_by_state(state=None):
+def get_reactors_by_state():
+    state = request.args
+    if state:
+        state=state.getlist('state')[0]
     try:
         conn = sqlite3.connect('reactors.db')
         c = conn.cursor()
