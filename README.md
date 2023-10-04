@@ -13,13 +13,11 @@ The NRC Reactors Data API is a Python-based API that provides access to informat
   - [Prerequisites]
   - [Installation]
 - [API Endpoints]
-  - [1. Retrieve all reactors](#1-retrieve-all-reactors)
-  - [2. Retrieve reactor details](#2-retrieve-reactor-details)
-  - [3. List reactors on outage](#3-list-reactors-on-outage)
-  - [4. Get last outage date](#4-get-last-outage-date)
-- [Usage Examples](#usage-examples)
-- [Contributing](#contributing)
-- [License](#license)
+  - [1. Retrieve all reactors]
+  - [2. Retrieve reactor details]
+  - [3. List reactors on outage]
+  - [4. Get last outage date]
+- [Usage Examples]
 
 ## Getting Started
 
