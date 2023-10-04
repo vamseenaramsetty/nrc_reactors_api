@@ -9,10 +9,10 @@ The NRC Reactors Data API is a Python-based API that provides access to informat
 
 ## Table of Contents
 
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [API Endpoints](#api-endpoints)
+- [Getting Started]
+  - [Prerequisites]
+  - [Installation]
+- [API Endpoints]
   - [1. Retrieve all reactors](#1-retrieve-all-reactors)
   - [2. Retrieve reactor details](#2-retrieve-reactor-details)
   - [3. List reactors on outage](#3-list-reactors-on-outage)
@@ -103,8 +103,4 @@ Example 4: List reactors on outage between January 1, 2023, and January 31, 2023
 curl http://localhost:5000/reactors/on-outage/01-01-2023_01-31-2023
 ```
 
-Example 5: Get the last known outage date for the reactor with unit "Unit123"
-```bash
-curl http://localhost:5000/reactors/last-outage-date/Callaway
-```
 
