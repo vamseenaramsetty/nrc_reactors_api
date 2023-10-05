@@ -36,7 +36,6 @@ To run the NRC Reactors Data API, ensure you have the following prerequisites in
 
    ```bash
    git clone https://github.com/vamseenaramsetty/nrc_reactors_api.git
-   cd nrc_reactors_api
    ```
 
    
@@ -51,7 +50,7 @@ To run the NRC Reactors Data API, follow these steps:
     source venv/bin/activate  # On Windows, use venv\Scripts\activate
     ```
 
-2. **Change to the project directory:**
+2. **If not in the project directory, change to the project directory:**
 
     ```bash
     cd nrc_reactors_api
