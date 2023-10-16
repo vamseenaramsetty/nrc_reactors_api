@@ -47,7 +47,7 @@ To run the NRC Reactors Data API, follow these steps:
 
     ```bash
     python3 -m venv venv
-    source venv/bin/activate  # On Windows, use venv\Scripts\activate
+    source venv/bin/activate  # On Windows, use venv/Scripts/activate
     ```
 
 2. **If not in the project directory, change to the project directory:**
